@@ -7,14 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
+using Negocio;
 
 namespace presentacion
 {
-    public partial class Form1 : Form
+    public partial class frmIngresoArticulo : Form
     {
-        public Form1()
+        public frmIngresoArticulo()
         {
             InitializeComponent();
+        }
+
+        private void frmIngresoArticulo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
