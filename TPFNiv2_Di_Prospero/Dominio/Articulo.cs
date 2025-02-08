@@ -19,10 +19,10 @@ namespace Dominio
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }
 
-        public int IdMarca { get; set; }
+        public Marca Empresa { get; set; }
 
-        [DisplayName("IdCategoría")]
-        public int IdCategoria { get; set; }
+        [DisplayName("Clasificación")]
+        public Categoria Clasificacion { get; set; }
 
         public string ImagenUrl { get; set; }
 

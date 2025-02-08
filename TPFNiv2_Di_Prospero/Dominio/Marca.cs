@@ -9,11 +9,17 @@ namespace Dominio
 {
     public class Marca
     {
+       
         public int Id { get; set; }
 
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }
 
-      
+        public override string ToString()
+        {
+            return Descripcion;                                 //Sobreescribo el método ToString() para que la columna me devuelva el contenido solicitado
+        }
+
+
     }
 }

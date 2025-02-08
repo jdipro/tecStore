@@ -21,7 +21,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, CATEGORIAS C, MARCAS M Where A.IdCategoria = C.Id and A.IdMarca = M.Id";
+                comando.CommandText = "Select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Empresa, C.Descripcion Clasificacion, A.ImagenUrl, A.Precio from ARTICULOS A, CATEGORIAS C, MARCAS M Where A.IdCategoria = C.Id and A.IdMarca = M.Id";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader(); //realizo un lectura de esos datos.
@@ -38,11 +38,12 @@ namespace Negocio
                     aux.Codigo = (string)lector["Codigo"];
                     aux.Nombre = (string)lector["Nombre"];
                     aux.Descripcion = (string)lector["Descripcion"];
-                    aux.IdMarca = lector.GetInt32(4);
-                    aux.IdCategoria = lector.GetInt32(5);
+                    aux.Empresa = new Marca();
+                    aux.Empresa.Descripcion = (string)lector["Empresa"];
+                    aux.Clasificacion = new Categoria();
+                    aux.Clasificacion.Descripcion = (string)lector["Clasificacion"];
                     aux.ImagenUrl = (string)lector["ImagenUrl"];
-                    aux.Precio = (decimal)lector["Precio"];
-
+                    aux.Precio = lector.IsDBNull(lector.GetOrdinal("Precio")) ? 0m : lector.GetDecimal(lector.GetOrdinal("Precio"));
 
 
                     lista.Add(aux); // Agrego artículo a la lista.
@@ -63,6 +64,37 @@ namespace Negocio
             }
 
         }
+
+        public void Agregar(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {   //seteo los parámetros de esta manera para evitar confusiones.
+                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) VALUES (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @ImagenUrl, @Precio)");
+              
+                datos.setearParametro("@Codigo", nuevo.Codigo);
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@IdMarca", nuevo.Empresa.Id);
+                datos.setearParametro("@IdCateoria", nuevo.Clasificacion.Id);
+                datos.setearParametro("@ImagenUrl", nuevo.ImagenUrl);
+                datos.setearParametro("@Precio", nuevo.Precio);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
 
     }
 }
