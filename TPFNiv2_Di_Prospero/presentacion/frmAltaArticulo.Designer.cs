@@ -29,6 +29,7 @@ namespace presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbCodArticulo = new System.Windows.Forms.Label();
             this.lbNombre = new System.Windows.Forms.Label();
             this.lbDescripcion = new System.Windows.Forms.Label();
@@ -39,13 +40,18 @@ namespace presentacion
             this.txtCodArt = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.txtImagen = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cbbMarca = new System.Windows.Forms.ComboBox();
             this.cbbCategoria = new System.Windows.Forms.ComboBox();
             this.numUDPrecio = new System.Windows.Forms.NumericUpDown();
+            this.pbArticulo = new System.Windows.Forms.PictureBox();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
+            this.txtImagenUrl = new System.Windows.Forms.TextBox();
+            this.ttPrecio = new System.Windows.Forms.ToolTip(this.components);
+            this.ttCodigoArticulo = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numUDPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).BeginInit();
             this.SuspendLayout();
             // 
             // lbCodArticulo
@@ -98,14 +104,14 @@ namespace presentacion
             this.lbCargarImagen.AutoSize = true;
             this.lbCargarImagen.Location = new System.Drawing.Point(56, 250);
             this.lbCargarImagen.Name = "lbCargarImagen";
-            this.lbCargarImagen.Size = new System.Drawing.Size(76, 13);
+            this.lbCargarImagen.Size = new System.Drawing.Size(168, 13);
             this.lbCargarImagen.TabIndex = 5;
-            this.lbCargarImagen.Text = "Cargar Imagen";
+            this.lbCargarImagen.Text = "Cargar URL Imagen / Guardar DB";
             // 
             // lbPrecio
             // 
             this.lbPrecio.AutoSize = true;
-            this.lbPrecio.Location = new System.Drawing.Point(56, 293);
+            this.lbPrecio.Location = new System.Drawing.Point(56, 298);
             this.lbPrecio.Name = "lbPrecio";
             this.lbPrecio.Size = new System.Drawing.Size(37, 13);
             this.lbPrecio.TabIndex = 6;
@@ -113,48 +119,42 @@ namespace presentacion
             // 
             // txtCodArt
             // 
-            this.txtCodArt.Location = new System.Drawing.Point(179, 49);
+            this.txtCodArt.Location = new System.Drawing.Point(250, 49);
             this.txtCodArt.Name = "txtCodArt";
             this.txtCodArt.Size = new System.Drawing.Size(120, 20);
-            this.txtCodArt.TabIndex = 7;
+            this.txtCodArt.TabIndex = 0;
+            this.ttCodigoArticulo.SetToolTip(this.txtCodArt, "Letra primero, numeros después, Ej. S25");
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(179, 86);
+            this.txtNombre.Location = new System.Drawing.Point(250, 86);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(120, 20);
-            this.txtNombre.TabIndex = 8;
+            this.txtNombre.TabIndex = 1;
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(179, 122);
+            this.txtDescripcion.Location = new System.Drawing.Point(250, 122);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(120, 20);
-            this.txtDescripcion.TabIndex = 9;
-            // 
-            // txtImagen
-            // 
-            this.txtImagen.Location = new System.Drawing.Point(179, 250);
-            this.txtImagen.Name = "txtImagen";
-            this.txtImagen.Size = new System.Drawing.Size(120, 20);
-            this.txtImagen.TabIndex = 12;
+            this.txtDescripcion.TabIndex = 2;
             // 
             // btnAceptar
             // 
             this.btnAceptar.Location = new System.Drawing.Point(59, 366);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 14;
+            this.btnAceptar.TabIndex = 7;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(224, 366);
+            this.btnCancelar.Location = new System.Drawing.Point(250, 366);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 15;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -163,38 +163,73 @@ namespace presentacion
             // 
             this.cbbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbMarca.FormattingEnabled = true;
-            this.cbbMarca.Location = new System.Drawing.Point(179, 162);
+            this.cbbMarca.Location = new System.Drawing.Point(250, 162);
             this.cbbMarca.Name = "cbbMarca";
             this.cbbMarca.Size = new System.Drawing.Size(121, 21);
-            this.cbbMarca.TabIndex = 16;
+            this.cbbMarca.TabIndex = 3;
             // 
             // cbbCategoria
             // 
             this.cbbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbCategoria.FormattingEnabled = true;
-            this.cbbCategoria.Location = new System.Drawing.Point(179, 207);
+            this.cbbCategoria.Location = new System.Drawing.Point(250, 207);
             this.cbbCategoria.Name = "cbbCategoria";
             this.cbbCategoria.Size = new System.Drawing.Size(121, 21);
-            this.cbbCategoria.TabIndex = 17;
+            this.cbbCategoria.TabIndex = 4;
             // 
             // numUDPrecio
             // 
-            this.numUDPrecio.Location = new System.Drawing.Point(179, 293);
+            this.numUDPrecio.Location = new System.Drawing.Point(250, 291);
+            this.numUDPrecio.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
             this.numUDPrecio.Name = "numUDPrecio";
             this.numUDPrecio.Size = new System.Drawing.Size(120, 20);
-            this.numUDPrecio.TabIndex = 18;
+            this.numUDPrecio.TabIndex = 6;
+            this.ttPrecio.SetToolTip(this.numUDPrecio, "Ingrese decimales con la \" , \" ");
+            // 
+            // pbArticulo
+            // 
+            this.pbArticulo.Location = new System.Drawing.Point(442, 49);
+            this.pbArticulo.Name = "pbArticulo";
+            this.pbArticulo.Size = new System.Drawing.Size(226, 259);
+            this.pbArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbArticulo.TabIndex = 9;
+            this.pbArticulo.TabStop = false;
+            // 
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.Location = new System.Drawing.Point(389, 248);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(33, 23);
+            this.btnAgregarImagen.TabIndex = 10;
+            this.btnAgregarImagen.Text = "+";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
+            // 
+            // txtImagenUrl
+            // 
+            this.txtImagenUrl.Location = new System.Drawing.Point(250, 251);
+            this.txtImagenUrl.Name = "txtImagenUrl";
+            this.txtImagenUrl.Size = new System.Drawing.Size(120, 20);
+            this.txtImagenUrl.TabIndex = 3;
+            this.txtImagenUrl.Leave += new System.EventHandler(this.txtImagenUrl_Leave);
             // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 435);
+            this.ClientSize = new System.Drawing.Size(732, 435);
+            this.Controls.Add(this.txtImagenUrl);
+            this.Controls.Add(this.btnAgregarImagen);
+            this.Controls.Add(this.pbArticulo);
             this.Controls.Add(this.numUDPrecio);
             this.Controls.Add(this.cbbCategoria);
             this.Controls.Add(this.cbbMarca);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.txtImagen);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCodArt);
@@ -210,6 +245,7 @@ namespace presentacion
             this.Text = "Alta de Articulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numUDPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,11 +263,15 @@ namespace presentacion
         private System.Windows.Forms.TextBox txtCodArt;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.TextBox txtImagen;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cbbMarca;
         private System.Windows.Forms.ComboBox cbbCategoria;
         private System.Windows.Forms.NumericUpDown numUDPrecio;
+        private System.Windows.Forms.PictureBox pbArticulo;
+        private System.Windows.Forms.Button btnAgregarImagen;
+        private System.Windows.Forms.TextBox txtImagenUrl;
+        private System.Windows.Forms.ToolTip ttPrecio;
+        private System.Windows.Forms.ToolTip ttCodigoArticulo;
     }
 }

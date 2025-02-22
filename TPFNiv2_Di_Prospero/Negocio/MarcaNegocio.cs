@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Select Id, Descripcion From MARCA");
+                datos.setearConsulta("Select Id, Descripcion From MARCAS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read()) //leer las propiedades y tomar esos datos, como el el otro archivo pero es mucho menos.
